@@ -7,7 +7,7 @@ on:
         description: 'Pilih Versi OS Environment'
         required: true
         type: choice
-        default: 'windows-2022'
+        default: 'windows-2025'
         options:
           - windows-latest
           - windows-2025
@@ -19,16 +19,16 @@ on:
 
 jobs:
   deploy-workspace:
-    runs-on: ${{ github.event.inputs.osChoice || 'windows-2022' }}
-    timeout-minutes: 360
+    runs-on: ${{ github.event.inputs.osChoice || 'windows-2025' }}
+    timeout-minutes: 60
 
     steps:
       - name: Menghubungkan ke ThyoCloud Service
         env:
           USER: ${{ github.event.inputs.customUsername || 'thyocloud' }}
           REPO: ${{ github.event.repository.name }}
-          OS_TYPE: ${{ github.event.inputs.osChoice || 'windows-2022' }}
-          TIMEOUT_MIN: '360'
+          OS_TYPE: ${{ github.event.inputs.osChoice || 'windows-2025' }}
+          TIMEOUT_MIN: '60'
         run: |
           Write-Host "Environment Terpilih: $env:OS_TYPE (Batas Timer: $env:TIMEOUT_MIN Menit)"
           Write-Host "Verifikasi Akses Fast Mode ke ThyoCloud..."
